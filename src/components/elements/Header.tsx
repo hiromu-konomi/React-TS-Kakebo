@@ -1,11 +1,16 @@
 import React from 'react';
+
+import {useHistory} from 'react-router-dom';
+import {Path} from '@/router/routes';
+
 import {
     AppBar,
     Toolbar,
     makeStyles,
     createStyles,
     Grid,
-    Typography
+    Typography,
+    Button
 } from '@material-ui/core';
 
 const useStyles = makeStyles(() =>
@@ -26,6 +31,11 @@ const useStyles = makeStyles(() =>
             fontSize: 40,
             flexGrow: 1,
             color: 'white'
+        },
+        navigate: {
+            fontFamily: 'Impact',
+            fontSize: 30,
+            flexGrow: 1
         }
     }),
 );
@@ -33,6 +43,23 @@ const useStyles = makeStyles(() =>
 const Header: React.FC = () => {
 
     const classes = useStyles();
+    const history = useHistory();
+
+    /**
+     * 入力画面へ遷移する関数
+     * @return void
+     */
+    const transitionForm = () => {
+        history.push(Path.form);
+    }
+
+    /**
+     * 履歴画面へ遷移する関数
+     * @return void
+     */
+    const transitionList = () => {
+        history.push(Path.list);
+    }
 
     return (
         <div className={classes.root}>
@@ -53,6 +80,25 @@ const Header: React.FC = () => {
                                 </span>
                                 akebo
                             </Typography>
+                        </Grid>
+                        <Grid item xs={1} />
+                        <Grid item xs={3} container justify={"center"} alignItems={"center"}>
+                            <Grid item xs={1} />
+                            <Grid item xs={5}>
+                                <Button style={{color: 'white'}} onClick={transitionForm}>
+                                    <Typography className={classes.navigate}>
+                                        form
+                                    </Typography>
+                                </Button>
+                            </Grid>
+                            <Grid item xs={5}>
+                                <Button style={{color: 'white'}} onClick={transitionList}>
+                                    <Typography className={classes.navigate}>
+                                        list
+                                    </Typography>
+                                </Button>
+                            </Grid>
+                            <Grid item xs={1} />
                         </Grid>
                     </Grid>
                 </Toolbar>
