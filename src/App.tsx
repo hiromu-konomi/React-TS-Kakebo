@@ -11,6 +11,9 @@ function App() {
     palette: {
       background: {
         default: '#FFDBC9'
+      },
+      primary: {
+        main: '#FE6B8B'
       }
     }
   });
